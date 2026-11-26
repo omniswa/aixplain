@@ -147,8 +147,8 @@ h1 {
 }
 
 .meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.25rem 1rem;
   margin-top: 1.5rem;
   padding-top: 1rem;
