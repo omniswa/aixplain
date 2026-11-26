@@ -6,6 +6,7 @@ const media = matchMedia("(prefers-color-scheme: dark)");
 const toggle = $("theme-toggle");
 const isDark = () =>
   root.dataset.theme ? root.dataset.theme === "dark" : media.matches;
+
 function syncToggle() {
   const dark = isDark();
   $("icon-sun").toggleAttribute("hidden", dark);
@@ -34,9 +35,9 @@ const headings = [...document.querySelectorAll("article h2, article h3")];
 const used = new Set();
 const slug = (text) =>
   text
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, "-")
-    .replace(/^-+|-+$/g, "") || "section";
+  .toLowerCase()
+  .replace(/[^\p{L}\p{N}]+/gu, "-")
+  .replace(/^-+|-+$/g, "") || "section";
 const toc = $("toc");
 for (const h of headings) {
   if (!h.id) {
@@ -93,10 +94,12 @@ const links = new Map(
 );
 let pinned = null;
 let ticking = false;
+
 function setActive(id) {
   links.forEach((a) => a.removeAttribute("aria-current"));
   links.get(id)?.setAttribute("aria-current", "true");
 }
+
 function updateActive() {
   ticking = false;
   if (pinned) {
@@ -125,8 +128,7 @@ addEventListener(
       ticking = true;
       requestAnimationFrame(updateActive);
     }
-  },
-  { passive: true },
+  }, { passive: true },
 );
 addEventListener("resize", updateActive);
 for (const type of ["wheel", "touchstart", "keydown"]) {
@@ -134,8 +136,7 @@ for (const type of ["wheel", "touchstart", "keydown"]) {
     type,
     () => {
       pinned = null;
-    },
-    { passive: true },
+    }, { passive: true },
   );
 }
 updateActive();
@@ -146,6 +147,7 @@ $("btn-top").addEventListener("click", () => window.scrollTo({ top: 0 }));
 /* Share */
 const toast = $("toast");
 let timer;
+
 function say(message) {
   toast.textContent = message;
   toast.dataset.show = "";

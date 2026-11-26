@@ -6,6 +6,7 @@ body {
 .hero {
   padding-block: 2.5rem 0.5rem;
 }
+
 .hero .deck {
   max-width: 52ch;
 }
@@ -18,20 +19,24 @@ body {
   color: var(--accent);
   overflow: visible;
 }
+
 .trend__line {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   animation: draw 1.8s var(--ease) 0.2s forwards;
 }
+
 .trend__dot {
   opacity: 0;
   animation: pop 0.4s var(--ease) 1.8s forwards;
 }
+
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
   }
 }
+
 @keyframes pop {
   to {
     opacity: 1;
@@ -46,11 +51,13 @@ body {
   gap: 0.75rem 1.25rem;
   margin-top: 2rem;
 }
+
 .cta__note {
   margin: 0;
   color: var(--muted);
   font-size: 0.9rem;
 }
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -63,9 +70,11 @@ body {
   font-weight: 650;
   text-decoration: none;
 }
+
 .btn:hover {
   filter: brightness(1.08);
 }
+
 .btn:focus-visible {
   outline-offset: 3px;
   border-radius: 999px;
@@ -77,13 +86,16 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   column-gap: 2rem;
 }
-.topics > div {
+
+.topics>div {
   padding-block: 1rem;
   border-top: 1px solid var(--border);
 }
+
 .topics dt {
   font: 700 1.15rem/1.3 var(--font-head);
 }
+
 .topics dd {
   margin-top: 0.3rem;
   color: var(--muted);

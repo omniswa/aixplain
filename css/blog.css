@@ -21,28 +21,35 @@
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+
 :root[data-theme="light"] {
   color-scheme: light;
 }
+
 :root[data-theme="dark"] {
   color-scheme: dark;
 }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 1rem);
   -webkit-text-size-adjust: 100%;
 }
+
 html:has(dialog[open]) {
   overflow: hidden;
 }
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
 * {
   margin: 0;
 }
+
 body {
   min-height: 100dvh;
   padding-bottom: 6.5rem;
@@ -52,23 +59,28 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
+
 button {
   font: inherit;
   color: inherit;
   cursor: pointer;
 }
+
 svg {
   display: block;
   flex: none;
 }
+
 svg[hidden] {
   display: none;
 }
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 0.25rem;
 }
+
 .skip {
   position: absolute;
   inset-inline-start: 1rem;
@@ -79,9 +91,11 @@ svg[hidden] {
   border-radius: 0.5rem;
   z-index: 30;
 }
+
 .skip:focus {
   top: 1rem;
 }
+
 .wrap {
   width: min(100% - 2rem, 42rem);
   margin-inline: auto;
@@ -93,12 +107,14 @@ svg[hidden] {
   justify-content: space-between;
   padding-block: 1rem;
 }
+
 .brand {
   font: 700 1.25rem var(--font-head);
   color: var(--text);
   text-decoration: none;
   letter-spacing: -0.01em;
 }
+
 .icon-btn {
   display: grid;
   place-items: center;
@@ -108,27 +124,31 @@ svg[hidden] {
   border-radius: 50%;
   background: var(--surface);
 }
+
 .icon-btn:hover {
   border-color: var(--accent);
 }
 
-article > header {
+article>header {
   padding-block: 2.5rem 1rem;
 }
+
 h1 {
   font: 700 clamp(2.1rem, 1.4rem + 3.4vw, 3.4rem)/1.08 var(--font-head);
   letter-spacing: -0.02em;
   text-wrap: balance;
 }
+
 .deck {
   margin-top: 1.1rem;
   color: var(--muted);
   font-size: 1.2em;
   text-wrap: pretty;
 }
+
 .meta {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.25rem 1rem;
   margin-top: 1.5rem;
   padding-top: 1rem;
@@ -136,24 +156,29 @@ h1 {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
 h2,
 h3 {
   scroll-margin-top: 1rem;
   text-wrap: balance;
 }
+
 h2 {
   margin-top: 3rem;
   font: 700 clamp(1.5rem, 1.2rem + 1.2vw, 1.9rem)/1.2 var(--font-head);
   letter-spacing: -0.01em;
 }
+
 h3 {
   margin-top: 2rem;
   font: 650 1.15rem/1.35 var(--font-body);
 }
-h2 + *,
-h3 + * {
+
+h2+*,
+h3+* {
   margin-top: 0.9rem;
 }
+
 p,
 ul,
 ol,
@@ -161,49 +186,60 @@ ol,
 pre {
   margin-top: 1.1rem;
 }
-h2 + p,
-h3 + p,
-h2 + h3 {
+
+h2+p,
+h3+p,
+h2+h3 {
   margin-top: 0.9rem;
 }
+
 p {
   max-width: 65ch;
   text-wrap: pretty;
 }
+
 a {
   color: var(--accent);
   text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
 }
+
 a:hover {
   text-decoration-thickness: 2px;
 }
+
 ul,
 ol {
   padding-inline-start: 1.4rem;
   max-width: 65ch;
 }
+
 li {
   padding-inline-start: 0.25rem;
 }
-li + li {
+
+li+li {
   margin-top: 0.45rem;
 }
+
 li::marker {
   color: var(--accent);
 }
+
 hr {
   height: 1px;
   margin-block: 3rem;
   border: 0;
   background: var(--border);
 }
+
 code {
   padding: 0.12em 0.35em;
   border-radius: 0.35rem;
   background: var(--code);
   font: 0.88em var(--font-mono);
 }
+
 pre {
   padding: 1rem 1.1rem;
   border-radius: var(--radius);
@@ -213,28 +249,33 @@ pre {
   font: 0.875rem/1.65 var(--font-mono);
   tab-size: 2;
 }
+
 pre code {
   padding: 0;
   background: none;
   font: inherit;
 }
+
 .table-wrap {
   overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
 }
+
 caption {
   padding: 0.8rem 1rem;
   text-align: start;
   color: var(--muted);
   font-size: 0.85rem;
 }
+
 th,
 td {
   padding: 0.7rem 1rem;
@@ -242,15 +283,18 @@ td {
   vertical-align: top;
   border-top: 1px solid var(--border);
 }
+
 th {
   font-weight: 650;
   white-space: nowrap;
 }
+
 thead th {
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 600;
 }
+
 footer {
   margin-top: 4rem;
   padding-block: 1.5rem;
@@ -258,6 +302,7 @@ footer {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
 .legal {
   display: flex;
   gap: 0 1rem;
@@ -281,6 +326,7 @@ footer {
   backdrop-filter: blur(14px);
   box-shadow: 0 8px 28px rgb(0 0 0 / 0.16);
 }
+
 .pill button {
   display: flex;
   align-items: center;
@@ -293,12 +339,15 @@ footer {
   font-size: 0.9rem;
   font-weight: 550;
 }
+
 .pill button:hover {
   background: var(--code);
 }
+
 .pill svg {
   color: var(--accent);
 }
+
 .toast {
   position: fixed;
   inset-inline: 0;
@@ -319,6 +368,7 @@ footer {
     transform 0.2s var(--ease);
   pointer-events: none;
 }
+
 .toast[data-show] {
   opacity: 1;
   transform: none;
@@ -337,21 +387,25 @@ footer {
   color: var(--text);
   overflow: hidden;
 }
+
 .sheet[open] {
   display: flex;
   flex-direction: column;
   animation: rise 0.28s var(--ease);
 }
+
 .sheet::backdrop {
   background: rgb(5 10 15 / 0.5);
   animation: fade 0.28s;
 }
+
 .sheet__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.1rem 1rem 0.5rem 1.25rem;
 }
+
 .sheet__head::before {
   content: "";
   position: absolute;
@@ -363,9 +417,11 @@ footer {
   border-radius: 1rem;
   background: var(--border);
 }
+
 .sheet__title {
   font: 700 1.15rem var(--font-head);
 }
+
 .toc {
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -374,10 +430,12 @@ footer {
   margin: 0;
   max-width: none;
 }
+
 .toc li {
   margin: 0;
   padding: 0;
 }
+
 .toc a {
   display: block;
   padding: 0.65rem 0.75rem;
@@ -386,33 +444,40 @@ footer {
   text-decoration: none;
   line-height: 1.35;
 }
+
 .toc a:hover {
   background: var(--code);
 }
+
 .toc [data-level="3"] a {
   padding-inline-start: 1.75rem;
   color: var(--muted);
   font-size: 0.95rem;
 }
+
 .toc a[aria-current="true"] {
   background: var(--code);
   color: var(--accent);
   font-weight: 600;
 }
+
 @keyframes rise {
   from {
     transform: translateY(100%);
   }
 }
+
 @keyframes fade {
   from {
     opacity: 0;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+  
   *,
   *::before,
   *::after {

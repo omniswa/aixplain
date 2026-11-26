@@ -15,30 +15,30 @@
   /* Paths appended to the base URL for og:url / canonical and og:image */
   const pagePath = (year, slug) => `blogs/${year}/${slug}`;
   const imagePath = (year, slug) => `images/${year}/${slug}.webp`;
-
+  
   const words = (s) => (s.trim().match(/\S+/g) || []).length;
   const slugify = (s) =>
     s
-      .normalize("NFKD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .replace(/&/g, " and ")
-      .replace(/['’]/g, "")
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-      .slice(0, 80)
-      .replace(/-+$/, "");
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80)
+    .replace(/-+$/, "");
   const esc = (s) =>
     String(s).replace(
       /[&<>"']/g,
       (c) =>
-        ({
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        })[c],
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      })[c],
     );
   const validUrl = (v) => {
     try {
@@ -47,47 +47,48 @@
       return false;
     }
   };
-
+  
   const rules = {
     title: (v) =>
-      !v
-        ? "Enter a title."
-        : v.length < 10
-          ? "Use at least 10 characters."
-          : v.length > 60
-            ? "Keep the title to 60 characters or fewer."
-            : !slugify(v)
-              ? "Add letters or numbers so a URL slug can be created."
-              : "",
+      !v ?
+      "Enter a title." :
+      v.length < 10 ?
+      "Use at least 10 characters." :
+      v.length > 60 ?
+      "Keep the title to 60 characters or fewer." :
+      !slugify(v) ?
+      "Add letters or numbers so a URL slug can be created." :
+      "",
     description: (v) =>
-      !v
-        ? "Enter a meta description."
-        : v.length < 50
-          ? "Use at least 50 characters."
-          : v.length > 160
-            ? "Keep the description to 160 characters or fewer."
-            : "",
+      !v ?
+      "Enter a meta description." :
+      v.length < 50 ?
+      "Use at least 50 characters." :
+      v.length > 160 ?
+      "Keep the description to 160 characters or fewer." :
+      "",
     content: (v) =>
-      !v
-        ? "Write some Markdown content."
-        : v.length < 100
-          ? "Write at least 100 characters of content."
-          : "",
+      !v ?
+      "Write some Markdown content." :
+      v.length < 100 ?
+      "Write at least 100 characters of content." :
+      "",
     siteUrl: (v) =>
-      v && !validUrl(v)
-        ? "Enter a full URL starting with http:// or https://."
-        : "",
+      v && !validUrl(v) ?
+      "Enter a full URL starting with http:// or https://." :
+      "",
     siteName: (v) => (v ? "" : "Enter a site name."),
     author: (v) => (v ? "" : "Enter an author name."),
   };
   const val = (n) => el[n].value.trim();
+  
   function check(n) {
     const msg = rules[n](val(n));
     $("err-" + n).textContent = msg;
     el[n].setAttribute("aria-invalid", String(!!msg));
     return !msg;
   }
-
+  
   function counters() {
     const t = el.title.value.trim().length,
       d = el.description.value.trim().length;
@@ -100,7 +101,7 @@
     $("slug-out").textContent =
       (slugify(el.title.value) || "your-title") + ".html";
   }
-
+  
   const touched = new Set();
   for (const n of fields) {
     el[n].addEventListener("input", () => {
@@ -114,7 +115,7 @@
       }
     });
   }
-
+  
   /* Persist site settings */
   try {
     const s = JSON.parse(localStorage.getItem("gen-settings") || "{}");
@@ -137,7 +138,7 @@
       /* ignore */
     }
   };
-
+  
   /* Markdown -> processed HTML */
   function renderBody(md, base) {
     const origin = new URL(base).origin;
@@ -148,21 +149,19 @@
     doc
       .querySelectorAll("script,style,iframe,object,embed")
       .forEach((n) => n.remove());
-    doc.querySelectorAll("*").forEach((n) =>
-      [...n.attributes].forEach((a) => {
-        if (
-          /^on/i.test(a.name) ||
-          (/^(href|src)$/i.test(a.name) && /^\s*javascript:/i.test(a.value))
-        )
-          n.removeAttribute(a.name);
-      }),
-    );
+    doc.querySelectorAll("*").forEach((n) => [...n.attributes].forEach((a) => {
+      if (
+        /^on/i.test(a.name) ||
+        (/^(href|src)$/i.test(a.name) && /^\s*javascript:/i.test(a.value))
+      )
+        n.removeAttribute(a.name);
+    }), );
     doc.querySelectorAll("h1").forEach((h) => {
       const h2 = doc.createElement("h2");
       h2.innerHTML = h.innerHTML;
       h.replaceWith(h2);
     });
-
+    
     doc.querySelectorAll("a[href]").forEach((a) => {
       try {
         const u = new URL(a.getAttribute("href"), base);
@@ -174,7 +173,7 @@
         /* leave as is */
       }
     });
-
+    
     doc.querySelectorAll("table").forEach((table, i) => {
       if (table.closest(".table-wrap")) return;
       table
@@ -189,13 +188,13 @@
       wrap.setAttribute(
         "aria-label",
         table.querySelector("caption")?.textContent.trim() ||
-          "Table " + (i + 1),
+        "Table " + (i + 1),
       );
       wrap.tabIndex = 0;
       table.replaceWith(wrap);
       wrap.append(table);
     });
-
+    
     doc.querySelectorAll("pre").forEach((p) => p.setAttribute("tabindex", "0"));
     doc.querySelectorAll("img").forEach((img) => {
       img.setAttribute("loading", "lazy");
@@ -203,10 +202,10 @@
     });
     return { html: doc.body.innerHTML, wordCount: words(doc.body.textContent) };
   }
-
+  
   const icon = (attrs, inner) =>
     `<svg width="${attrs.s}" height="${attrs.s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"${attrs.join ? ' stroke-linejoin="round"' : ""} aria-hidden="true"${attrs.id ? ` id="${attrs.id}"` : ""}${attrs.hidden ? " hidden" : ""}>${inner}</svg>`;
-
+  
   function buildPage() {
     const title = val("title"),
       description = val("description");
@@ -235,7 +234,7 @@
       d = esc(description),
       a = esc(author),
       sn = esc(siteName);
-
+    
     const ld = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
@@ -256,7 +255,7 @@
     const ldJson = JSON.stringify(ld, null, 2)
       .replace(/</g, "\\u003c")
       .replace(/\n/g, "\n      ");
-
+    
     return {
       slug,
       text: `<!doctype html>
@@ -333,7 +332,7 @@
           <div class="meta">
             <span>By ${a}</span> |
             <span>Published <time datetime="${iso}">${pretty}</time></span> |
-            <span>${minutes} min read</span>
+            <span>${minutes}-minute read</span>
           </div>
         </header>
 
@@ -386,10 +385,11 @@
 `,
     };
   }
-
+  
   /* Actions */
   const status = $("status");
   let timer;
+  
   function say(msg, isError) {
     status.textContent = msg;
     status.toggleAttribute("data-error", !!isError);
@@ -398,6 +398,7 @@
       status.textContent = "";
     }, 4000);
   }
+  
   function validateAll() {
     let first = null;
     for (const n of fields) {
@@ -419,7 +420,7 @@
     );
     return false;
   };
-
+  
   $("form").addEventListener("submit", (e) => {
     e.preventDefault();
     if (!validateAll() || !ready()) return;
@@ -437,7 +438,7 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     say("Downloaded " + slug + ".html");
   });
-
+  
   $("btn-copy").addEventListener("click", async () => {
     if (!validateAll() || !ready()) return;
     saveSettings();
@@ -448,6 +449,6 @@
       say("Copy was blocked. Use Download HTML instead.", true);
     }
   });
-
+  
   counters();
 })();
