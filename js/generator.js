@@ -347,8 +347,8 @@
           © <span id="current-year">${now.getFullYear()}</span> ${sn}. All rights reserved.
         </div>
         <div class="legal">
-          <a href="#">Privacy Policy</a> |
-          <a href="#"> Terms of Service</a>
+          <a href="../../privacy.html">Privacy Policy</a> |
+          <a href="../../terms.html"> Terms of Service</a>
         </div>
       </footer>
     </div>
