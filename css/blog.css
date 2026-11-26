@@ -238,15 +238,19 @@ code {
   border-radius: 0.35rem;
   background: var(--code);
   font: 0.88em var(--font-mono);
+  overflow-wrap: anywhere;
 }
 
 pre {
+  max-width: 100%;
   padding: 1rem 1.1rem;
   border-radius: var(--radius);
   background: var(--code);
   border: 1px solid var(--border);
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   font: 0.875rem/1.65 var(--font-mono);
+  white-space: pre;
   tab-size: 2;
 }
 
@@ -254,10 +258,13 @@ pre code {
   padding: 0;
   background: none;
   font: inherit;
+  overflow-wrap: normal;
 }
 
 .table-wrap {
+  max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
@@ -278,6 +285,7 @@ caption {
 
 th,
 td {
+  min-width: 9rem;
   padding: 0.7rem 1rem;
   text-align: start;
   vertical-align: top;
@@ -286,10 +294,10 @@ td {
 
 th {
   font-weight: 650;
-  white-space: nowrap;
 }
 
 thead th {
+  white-space: normal;
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 600;

@@ -101,3 +101,22 @@ body {
   color: var(--muted);
   font-size: 0.95rem;
 }
+
+main details {
+  margin-top: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+main summary {
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  min-height: 2.75rem;
+  font-weight: 650;
+}
+
+main details p {
+  padding: 0 1rem 1rem;
+  margin: 0;
+}

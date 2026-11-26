@@ -116,29 +116,6 @@
     });
   }
   
-  /* Persist site settings */
-  try {
-    const s = JSON.parse(localStorage.getItem("gen-settings") || "{}");
-    for (const k of ["siteUrl", "siteName", "author"])
-      if (s[k]) el[k].value = s[k];
-  } catch {
-    /* ignore */
-  }
-  const saveSettings = () => {
-    try {
-      localStorage.setItem(
-        "gen-settings",
-        JSON.stringify({
-          siteUrl: val("siteUrl"),
-          siteName: val("siteName"),
-          author: val("author"),
-        }),
-      );
-    } catch {
-      /* ignore */
-    }
-  };
-  
   /* Markdown -> processed HTML */
   function renderBody(md, base) {
     const origin = new URL(base).origin;
@@ -347,7 +324,7 @@
         </div>
         <div class="legal">
           <a href="../../privacy.html">Privacy Policy</a> |
-          <a href="../../terms.html"> Terms of Service</a>
+          <a href="../../terms.html">Terms of Service</a>
         </div>
       </footer>
     </div>
@@ -424,7 +401,6 @@
   $("form").addEventListener("submit", (e) => {
     e.preventDefault();
     if (!validateAll() || !ready()) return;
-    saveSettings();
     const { slug, text } = buildPage();
     const url = URL.createObjectURL(
       new Blob([text], { type: "text/html;charset=utf-8" }),
@@ -441,7 +417,6 @@
   
   $("btn-copy").addEventListener("click", async () => {
     if (!validateAll() || !ready()) return;
-    saveSettings();
     try {
       await navigator.clipboard.writeText(buildPage().text);
       say("HTML copied");

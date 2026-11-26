@@ -4,8 +4,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>aixplain | Trend Chaser</title>
-  <meta name="description" content="aixplain tackle whatever is trending, from tech and culture to money and the internet, in clear, quick reads." />
+  <title>aixplain | Trending Topics Explained in Plain Words</title>
+  <meta name="description"
+    content="aixplain explains what's trending in AI, tech, culture, money, and online life in short, plain-language articles you can read in a few minutes. Free to read." />
+  <meta name="keywords"
+    content="trending topics, AI news explained, tech trends, internet culture, viral topics, money and business trends" />
   <meta name="author" content="xclnt-sensai" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta name="color-scheme" content="light dark" />
@@ -15,24 +18,48 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="aixplain" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="aixplain | Trend Chaser" />
-  <meta property="og:description" content="Clear, quick reads on whatever is trending, written with the help of AI." />
+  <meta property="og:title" content="aixplain | Trending Topics Explained in Plain Words" />
+  <meta property="og:description" content="Short, plain-language articles on whatever is trending in AI, tech, culture, and money." />
   <meta property="og:url" content="https://aixplain.pages.dev" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="aixplain | Trend Chaser" />
-  <meta name="twitter:description" content="Clear, quick reads on whatever is trending, written with the help of AI." />
+  <meta property="og:image" content="https://aixplain.pages.dev/images/aixplain-home.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="aixplain: trending topics explained in plain words" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="aixplain | Trending Topics Explained in Plain Words" />
+  <meta name="twitter:description" content="Short, plain-language articles on whatever is trending." />
+  <meta name="twitter:image" content="https://aixplain.pages.dev/images/aixplain-home.webp" /> 
   <link rel="stylesheet" href="css/blog.css" />
   <link rel="stylesheet" href="css/index.css" />
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "aixplain",
-      "url": "https://aixplain.pages.dev",
-      "description": "Clear, quick reads on whatever is trending.",
-      "inLanguage": "en",
-      "publisher": { "@type": "Organization", "name": "aixplain" }
-    }
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://aixplain.pages.dev/#website",
+        "name": "aixplain",
+        "url": "https://aixplain.pages.dev/",
+        "description": "Short, plain-language articles on whatever is trending in tech, culture, money, and the internet.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://aixplain.pages.dev/#org" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://aixplain.pages.dev/#org",
+        "name": "aixplain",
+        "url": "https://aixplain.pages.dev/"
+      },
+      {
+        "@type": "Blog",
+        "@id": "https://aixplain.pages.dev/#blog",
+        "name": "aixplain",
+        "url": "https://aixplain.pages.dev/blogs/",
+        "isPartOf": { "@id": "https://aixplain.pages.dev/#website" },
+        "inLanguage": "en"
+      }
+    ]
+  }
   </script>
   <script>
     try {
@@ -48,7 +75,7 @@
   
   <div class="wrap">
     <header class="masthead">
-      <a class="brand" href="#">aixplain</a>
+      <a class="brand" href="./">aixplain</a>
       <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch theme">
         <svg id="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4" />
@@ -115,6 +142,36 @@
         </div>
       </dl>
     </section>
+
+    <section aria-labelledby="how-title">
+      <h2 id="how-title">How aixplain works</h2>
+      <p>
+        We watch what is trending across tech, culture, business, and online
+        life, pick the topics people are asking about, and explain each one in
+        a short article. Every piece covers what happened, why it is trending,
+        and the date of the latest development.
+      </p>
+    </section>
+    
+    <section aria-labelledby="faq-title">
+      <h2 id="faq-title">Questions people ask</h2>
+      <details name="faq">
+        <summary>What is aixplain?</summary>
+        <p>A free reading site that explains trending topics in plain language.</p>
+      </details>
+      <details name="faq">
+        <summary>What topics does aixplain cover?</summary>
+        <p>AI and technology, culture and media, money and business, and everyday life online.</p>
+      </details>
+      <details name="faq">
+        <summary>How do I get new articles first?</summary>
+        <p>Join the Telegram group. New articles are posted there first.</p>
+      </details>
+      <details name="faq">
+        <summary>Is aixplain free?</summary>
+        <p>Yes. The site is free to read and supported by ads.</p>
+      </details>
+    </section>
   </main>
   
   <div class="wrap">
@@ -124,7 +181,7 @@
       </div>
       <div class="legal">
         <a href="privacy.html">Privacy Policy</a> |
-        <a href="terms.html"> Terms of Service</a>
+        <a href="terms.html">Terms of Service</a>
       </div>
     </footer>
   </div>
