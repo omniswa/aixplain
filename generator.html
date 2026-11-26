@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Blog Generator | aixplain</title>
+    <meta
+      name="description"
+      content="Write Markdown, get a finished blog page as a downloadable HTML file."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/generator.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <span class="brand">aixplain</span>
+      <main>
+        <h1>Blog page generator</h1>
+        <p class="lede">
+          Write in Markdown and download a finished page that matches your blog
+          template, with SEO tags, wrapped tables and safe external links.
+        </p>
+
+        <form id="form" novalidate>
+          <div class="field">
+            <label for="title">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              autocomplete="off"
+              required
+              aria-describedby="hint-title err-title"
+            />
+            <div class="meta">
+              <span id="hint-title"
+                >10 to 60 characters. Becomes the H1 and page title.</span
+              ><span class="count" id="count-title">0/60</span>
+            </div>
+            <p class="error" id="err-title" role="alert"></p>
+          </div>
+
+          <div class="slug" aria-live="polite">
+            <span>File name</span><code id="slug-out">your-title.html</code>
+          </div>
+
+          <div class="field">
+            <label for="description">Meta description</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="3"
+              required
+              aria-describedby="hint-description err-description"
+            ></textarea>
+            <div class="meta">
+              <span id="hint-description"
+                >50 to 160 characters. Also used as the intro under the
+                title.</span
+              ><span class="count" id="count-description">0/160</span>
+            </div>
+            <p class="error" id="err-description" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="content">Content (Markdown)</label>
+            <textarea
+              id="content"
+              name="content"
+              spellcheck="true"
+              required
+              aria-describedby="hint-content err-content"
+              placeholder="## First section&#10;&#10;Start writing. Headings, lists, tables, code and links all work."
+            ></textarea>
+            <div class="meta">
+              <span id="hint-content"
+                >Use ## for sections and ### for subsections.</span
+              ><span class="count" id="count-content">0 words</span>
+            </div>
+            <p class="error" id="err-content" role="alert"></p>
+          </div>
+
+          <details>
+            <summary>Site settings</summary>
+            <div class="settings">
+              <div class="field">
+                <label for="siteUrl">Base URL (optional)</label>
+                <input
+                  id="siteUrl"
+                  type="url"
+                  inputmode="url"
+                  autocomplete="url"
+                  placeholder="https://example.com/blog/"
+                  value="https://omniswa-ai.github.io/3NDING/"
+                  aria-describedby="hint-siteUrl err-siteUrl"
+                />
+                <div class="meta">
+                  <span id="hint-siteUrl"
+                    >Sets the canonical URL and og:image, and decides which
+                    links count as external.</span
+                  >
+                </div>
+                <p class="error" id="err-siteUrl" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="siteName">Site name</label>
+                <input
+                  id="siteName"
+                  type="text"
+                  value="aixplain"
+                  aria-describedby="err-siteName"
+                />
+                <p class="error" id="err-siteName" role="alert"></p>
+              </div>
+              <div class="field">
+                <label for="author">Author</label>
+                <input
+                  id="author"
+                  type="text"
+                  value="omniswa-ai"
+                  aria-describedby="err-author"
+                />
+                <p class="error" id="err-author" role="alert"></p>
+              </div>
+            </div>
+          </details>
+
+          <div class="actions">
+            <button class="btn btn--primary" type="submit" id="btn-download">
+              Download HTML
+            </button>
+            <button class="btn" type="button" id="btn-copy">Copy HTML</button>
+            <span
+              class="status"
+              id="status"
+              role="status"
+              aria-live="polite"
+            ></span>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+    <script src="js/generator.js" defer></script>
+  </body>
+</html>
