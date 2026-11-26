@@ -97,7 +97,8 @@
     $("count-description").toggleAttribute("data-over", d > 160);
     const w = words(el.content.value);
     $("count-content").textContent = w + (w === 1 ? " word" : " words");
-    $("slug-out").textContent = slugify(el.title.value) || "your-title";
+    $("slug-out").textContent =
+      (slugify(el.title.value) || "your-title") + ".html";
   }
 
   const touched = new Set();
@@ -316,7 +317,7 @@
 
     <div class="wrap">
       <header class="masthead">
-        <a class="brand" href="#top" id="top">${sn}</a>
+        <a class="brand" href="../../index.html" id="top">${sn}</a>
         <button class="icon-btn" type="button" id="theme-toggle" aria-label="Switch theme">
           ${icon({ s: 20, id: "icon-sun" }, '<circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />')}
           ${icon({ s: 20, id: "icon-moon", join: 1, hidden: 1 }, '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />')}
@@ -330,13 +331,13 @@
           <h1>${t}</h1>
           <p class="deck">${d}</p>
           <div class="meta">
-            <span>By ${a}</span>
-            <span>Published <time datetime="${iso}">${pretty}</time></span>
+            <span>By ${a}</span> |
+            <span>Published <time datetime="${iso}">${pretty}</time></span> |
             <span>${minutes} min read</span>
           </div>
         </header>
 
-${html}
+        ${html}
       </article>
     </main>
 
@@ -345,8 +346,8 @@ ${html}
         <div>
           © <span id="current-year">${now.getFullYear()}</span> ${sn}. All rights reserved.
         </div>
-        <div>
-          <a href="#">About</a> | <a href="#">Privacy Policy</a> |
+        <div class="legal">
+          <a href="#">Privacy Policy</a> |
           <a href="#"> Terms of Service</a>
         </div>
       </footer>

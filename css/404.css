@@ -1,0 +1,17 @@
+/* 404 page. Loads after blog.css and home.css. */
+.nf-code {
+  margin: 0;
+  color: var(--muted);
+  font: 700 clamp(1.1rem, 1rem + 0.5vw, 1.4rem) var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.nf-code + h1 {
+  margin-top: 0.5rem;
+}
+.trend--fall {
+  color: var(--muted);
+}
+.trend--fall .trend__dot {
+  color: var(--accent);
+  fill: var(--accent);
+}
