@@ -47,6 +47,52 @@
       return false;
     }
   };
+
+    /* Smart quotes */
+  const OPENERS = /[\s([{\u2013\u2014\u2018\u201C]/;
+  const isOpen = (before) => before === "" || OPENERS.test(before);
+
+  // Curl quotes in a plain string. `prev` is the character just before it.
+  function curl(text, prev = "") {
+    let out = "";
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      const before = out ? out.at(-1) : prev;
+      if (c === '"') {
+        out += isOpen(before) ? "\u201C" : "\u201D";
+      } else if (c === "'") {
+        // Apostrophes and closing quotes are ’; '90s keeps ’
+        const digitNext = /\d/.test(text[i + 1] ?? "");
+        out += isOpen(before) && !digitNext ? "\u2018" : "\u2019";
+      } else {
+        out += c;
+      }
+    }
+    return out;
+  }
+
+  // Curl quotes across all text nodes in a DOM tree, skipping code.
+  function smartQuotes(scope) {
+    const skip = "code, pre, kbd, samp, script, style, textarea";
+    const block =
+      "p, li, h1, h2, h3, h4, h5, h6, td, th, dt, dd, blockquote, figcaption, summary, caption";
+    const walker = scope.ownerDocument.createTreeWalker(
+      scope,
+      NodeFilter.SHOW_TEXT,
+    );
+    let prev = "";
+    let currentBlock = null;
+    for (let node; (node = walker.nextNode()); ) {
+      const parent = node.parentElement;
+      const parentBlock = parent.closest(block);
+      if (parentBlock !== currentBlock) {
+        currentBlock = parentBlock;
+        prev = "";
+      }
+      if (!parent.closest(skip)) node.nodeValue = curl(node.nodeValue, prev);
+      prev = node.nodeValue.at(-1) ?? prev; // code still counts as context
+    }
+  }
   
   const rules = {
     title: (v) =>
@@ -177,6 +223,7 @@
       img.setAttribute("loading", "lazy");
       if (!img.hasAttribute("alt")) img.setAttribute("alt", "");
     });
+    smartQuotes(doc.body);
     return { html: doc.body.innerHTML, wordCount: words(doc.body.textContent) };
   }
   
@@ -184,8 +231,8 @@
     `<svg width="${attrs.s}" height="${attrs.s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"${attrs.join ? ' stroke-linejoin="round"' : ""} aria-hidden="true"${attrs.id ? ` id="${attrs.id}"` : ""}${attrs.hidden ? " hidden" : ""}>${inner}</svg>`;
   
   function buildPage() {
-    const title = val("title"),
-      description = val("description");
+    const title = curl(val("title")),
+      description = curl(val("description"));
     const siteName = val("siteName"),
       author = val("author");
     let base = val("siteUrl");
