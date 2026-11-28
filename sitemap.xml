@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://aixplain.pages.dev</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-28</lastmod>
+  </url>
+  <url>
+    <loc>https://aixplain.pages.dev/blogs/</loc>
+    <lastmod>2026-11-28</lastmod>
+  </url>
+  <url>
+    <loc>https://aixplain.pages.dev/blogs/2026/gta-vi-sales-how-a-game-made-3-79-billion-in-one-day</loc>
+    <lastmod>2026-11-28</lastmod>
   </url>
   <url>
     <loc>https://aixplain.pages.dev/blogs/2026/spacexs-1-million-satellite-plan-data-centers-in-space</loc>

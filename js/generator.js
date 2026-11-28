@@ -302,6 +302,7 @@
     <link rel="canonical" href="${esc(pageUrl)}" />`
         : ""
     }
+    <link rel="alternate" type="application/rss+xml" title="${sn}" href="${base}feed.xml" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="${sn}" />
     <meta property="og:locale" content="en_US" />
